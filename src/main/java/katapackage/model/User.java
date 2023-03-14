@@ -11,7 +11,8 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(generator = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id",nullable = false)
     private int id;
     @Column(name="name",nullable = false)
     @NotEmpty(message="Name should not be empty")
@@ -30,10 +31,10 @@ public class User {
 
     }
 
-    public User(int id, String name, String lastname) {
-        this.id = id;
+    public User(String name, String lastName, String email) {
         this.name = name;
-        this.lastname = lastname;
+        this.lastname = lastName;
+        this.email = email;
     }
 
     public User(int id, String name, String lastname, String email) {
