@@ -1,45 +1,51 @@
 package katapackage.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import katapackage.model.User;
-import org.springframework.stereotype.Component;
+import javax.persistence.EntityManager;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+import katapackage.model.User;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
+
 
     private final EntityManager entityManager;
-    public UserDaoImpl(EntityManager entityManager){
-        this.entityManager=entityManager;
+
+    public UserDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
 
-
-    public List<User> getUserList(){
-        return entityManager.createQuery("FROM User",User.class).getResultList();
+    public List<User> getUserList() {
+        return entityManager.createQuery("From User", User.class).getResultList();
     }
-    public User show(int id){return entityManager.createQuery("from User where id=:i",User.class).getSingleResult();}
+
+    public User show(int id) {
+        return entityManager.createQuery("from User where id=:i", User.class)
+                .setParameter("i", id).getSingleResult();
+    }
+
     public void save(User user) {
         entityManager.joinTransaction();
         entityManager.persist(user);
     }
-    public void update(int id,User user){
+
+    public void update(int id, User user) {
         entityManager.joinTransaction();
         User UpdUser = show(id);
         UpdUser.setName(user.getName());
         UpdUser.setLastname(user.getLastname());
-        entityManager.persist(user);
+        entityManager.merge(user);
     }
-    public void delete(int id){
+
+    public void delete(int id) {
         entityManager.joinTransaction();
-        try{
+        try {
             entityManager.remove(show(id));
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }

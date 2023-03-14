@@ -1,11 +1,8 @@
 package katapackage.dao;
 
 import katapackage.model.User;
-import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-
 public interface UserDao {
 
     List<User> getUserList();
