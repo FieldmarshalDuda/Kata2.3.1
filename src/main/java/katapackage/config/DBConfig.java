@@ -2,7 +2,7 @@ package katapackage.config;
 
 
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -23,7 +23,6 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @PropertySource("classpath:hibernate.properties")
 @ComponentScan(basePackages = "katapackage")
-@EntityScan("katapackage/model")
 @EnableTransactionManagement
 public class DBConfig {
 
