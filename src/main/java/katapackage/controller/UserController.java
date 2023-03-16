@@ -3,8 +3,6 @@ package katapackage.controller;
 
 import katapackage.model.User;
 import katapackage.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
