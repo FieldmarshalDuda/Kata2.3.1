@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New user</title>
+    <title>Новый пользователь</title>
 </head>
 <body>
-<label>New user:</label>
+<label>Новый пользователь:</label>
 <form th:method="POST" th:action="@{/users}" th:object="${user}">
-    <label for="name">Name</label>
+    <label for="name">Имя</label>
     <input  id="name" type="text" th:field="*{name}"/>
-    <div style="color:palevioletred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    <div style="color:palevioletred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка имени</div>
     <br>
-    <label for="lastname">Lastname</label>
+    <label for="lastname">Фамилия</label>
     <input  id="lastname" type="text" th:field="*{lastname}"/>
-    <div style="color:palevioletred" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Lastname error</div>
+    <div style="color:palevioletred" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Ошибка фамилии</div>
     <br>
-    <label for="email"> Email</label>
+    <label for="email">Почта</label>
     <input id="email" type="text" th:field="*{email}"/>
-    <div style="color:palevioletred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    <div style="color:palevioletred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Ошибка почты</div>
     <br>
 
-    <input type="submit" value="Add user"/>
+    <input type="submit" value="Добавить пользователя"/>
 </form>
-<a href="get">Back to users list</a>
+<a href="get">Вернуться к списку пользователей</a>
 </body>
 </html>
