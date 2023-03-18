@@ -3,13 +3,9 @@ package katapackage.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import katapackage.dao.UserDao;
 import katapackage.model.User;
-
-
 import java.util.List;
-
 
 
 @Service
@@ -19,7 +15,6 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserDao dao){
         userDao=dao;
     }
-
 
     @Override
     @Transactional
@@ -32,8 +27,6 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         userDao.delete(id);
     }
-
-
 
     @Override
     @Transactional

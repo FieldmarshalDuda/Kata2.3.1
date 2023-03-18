@@ -1,11 +1,14 @@
 package katapackage.config;
 
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
 
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -16,6 +19,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
     }
+
 
     @Override
     protected String[] getServletMappings() {
@@ -31,8 +35,12 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected Class<?>[] getServletConfigClasses() {
         return new Class[]{WebConfig.class};
     }
-    private void registerHiddenFieldFilter(ServletContext aContext){
+    private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null,true,"/*");
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+        FilterRegistration charEncodingFilterReg = aContext.addFilter("CharacterEncodingFilter", CharacterEncodingFilter.class);
+        charEncodingFilterReg.setInitParameter("encoding", "UTF-8");
+        charEncodingFilterReg.setInitParameter("forceEncoding", "true");
+        charEncodingFilterReg.addMappingForUrlPatterns(null, false, "/*");
     }
 }
